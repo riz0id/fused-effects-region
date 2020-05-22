@@ -24,14 +24,14 @@ module Control.Effect.Region
 import           Control.Algebra
 import           Control.Effect.Exception
 import           Control.Effect.Lift
-import           Control.Effect.State
+import           Control.Effect.Reader
 import           Data.IORef (IORef)
 import qualified Data.IORef as Ref
 import           System.IO (Handle, IOMode)
 import qualified System.IO as Sys
 
 -- | @since 0.1.0.0
-type Region = State (Ref.IORef [Sys.Handle])
+type Region = Reader (Ref.IORef [Sys.Handle])
 
 -- | @since 0.1.0.0
 hOpenFile :: ( Has Region    sig m
@@ -40,7 +40,7 @@ hOpenFile :: ( Has Region    sig m
           => Sys.FilePath -> IOMode -> m Sys.Handle
 hOpenFile fp mode = do
   h     <- sendIO (Sys.openFile fp mode)
-  hs    <- get
+  hs    <- ask
   sendIO (modifyIORef hs (h :))
   return h
 
