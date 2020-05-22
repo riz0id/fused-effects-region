@@ -1,0 +1,2 @@
+./test/fname2.txt
+configs

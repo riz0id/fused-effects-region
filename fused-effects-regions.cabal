@@ -4,7 +4,8 @@ name:               fused-effects-region
 version:            0.1.0.0
 synopsis:           Monadic regions with fused-effects.
 description:        Provides an implementation of Monadic regions rough baed off Oleg Kiselyov's "Lightweight Monadic Regions"
--- bug-reports:
+homepage:           https://github.com/riz0id/fused-effects-region
+bug-reports:        https://github.com/riz0id/fused-effects-region/issues
 license:            BSD-3-Clause
 license-file:       LICENSE
 author:             riz0id
@@ -38,7 +39,8 @@ library
   default-language: Haskell2010
   hs-source-dirs:   src
   exposed-modules:
-      Control.Effect.Region
+      Control.Carrier.Region
+    , Control.Effect.Region
   build-depends:
       base >=4.13 && <4.14
     , fused-effects
@@ -55,4 +57,4 @@ test-suite test
       base
     , fused-effects
     , fused-effects-exceptions
-    , fused-effects-regions
+    , fused-effects-region
